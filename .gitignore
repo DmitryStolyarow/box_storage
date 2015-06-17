@@ -14,6 +14,7 @@ tmp/**/*
 /public/system/**/*
 /public/assets
 /public/assets/**/*
+/public/spree
 .idea
 .sass-cache/
 db/fixtures/*
