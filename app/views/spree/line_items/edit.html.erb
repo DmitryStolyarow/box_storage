@@ -1,0 +1,30 @@
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @line_item } %>
+
+<% content_for :page_title do %>
+  <%= Spree.t(:new_image) %>
+<% end %>
+
+<%= form_for @line_item, url: main_app.order_line_item_path(@order.id, @line_item), html: { multipart: true } do |f| %>
+  <fieldset data-hook="new_image">
+    <div data-hook="admin_image_form_fields" class="row">
+      <div class="col-md-6">
+        <div data-hook="file" class="form-group">
+          <%= f.label :image %>
+          <%= f.file_field :image %>
+        </div>
+      </div>
+      <div data-hook="alt_text" class="col-md-6">
+        <div class="form-group">
+          <%= f.label :item_description %>
+          <% binding.pry %>
+          <%= f.text_area :item_description, :rows => 4, :class => 'form-control' %>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="form-actions" data-hook="buttons">
+      <%= f.submit 'Save' %>
+    </div>
+  </fieldset>
+<% end %>

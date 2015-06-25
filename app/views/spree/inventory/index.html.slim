@@ -14,11 +14,15 @@ table#line-items.table
     - @line_items.each do |item|
       tr data-hook="order_details_line_item_row"
         td data-hook="order_item_image"
-          - if item.variant.images.length == 0
-            = link_to small_image(item.variant.product), item.variant.product
+          - if item.image
+            = image_tag item.image.url(:small)
           - else
-            = link_to image_tag(item.variant.images.first.attachment.url(:small)), item.variant.product
+            - if item.variant.images.length == 0
+              = small_image(item.variant.product)
+            - else
+              = image_tag(item.variant.images.first.attachment.url(:small))
         td data-hook="order_item_description"
           h4= item.variant.product.name
-          = truncated_product_description(item.variant.product)
-          = "(" + item.variant.options_text + ")" unless item.variant.option_values.empty?
+          = item.item_description
+        td
+          = link_to 'Edit', main_app.edit_order_line_item_path(item.order.id, item)
