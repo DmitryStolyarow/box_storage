@@ -6,7 +6,6 @@ Spree::LineItem.class_eval do
                     path: ':rails_root/public/spree/line_items/:id/:style/:basename.:extension',
                     convert_options: { all: '-strip -auto-orient -colorspace sRGB' }
   validates_attachment :image,
-    :presence => true,
     :content_type => { :content_type => %w(image/jpeg image/jpg image/png image/gif) }
   validate :no_attachment_errors
 
