@@ -9,7 +9,7 @@ table#line-items.table
 
   thead
     tr class="active"
-      th colspan="2"= Spree.t(:item)
+      th colspan="4"= Spree.t(:item)
   tbody
     - @line_items.each do |item|
       tr data-hook="order_details_line_item_row"
@@ -26,3 +26,5 @@ table#line-items.table
           = item.item_description
         td
           = link_to 'Edit', main_app.edit_order_line_item_path(item.order.id, item)
+        td
+          = link_to 'Request Return', main_app.new_order_return_path(item.order.id, line_item_id: item)
